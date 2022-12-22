@@ -19,6 +19,7 @@ test:
 
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: twitter_clone_production
   username: <%= ENV['PGUSERNAME'] %>
   password: <%= ENV["TWITTER_CLONE_DATABASE_PASSWORD"] %>
