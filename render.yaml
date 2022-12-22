@@ -5,7 +5,7 @@ services:
   - type: web
     name: rails
     env: ruby
-    buildComand: "./bin/render-build.sh"
+    buildComand: bundle install; bundle exec rake assets:precompile; bundle exec rake assets:clean;
     startComand: bundle exec rails s
     envVars:
       - key: RAILS_MASTER_KEY
@@ -20,3 +20,19 @@ services:
     ipAllowList: []
     plan: free
     maxmemoryPolicy: noeviction
+
+  - type: worker
+      name: sidekiq-worker
+      env: ruby
+      region: ohio
+      buildCommand: bundle install
+      startCommand: bundle exec sidekiq
+      plan: free
+      envVars:
+        - key: REDIS_URL
+          fromService:
+            type: redis
+            name: sidekiq-redis
+            property: connectionString
+        - key: RAILS_MASTER_KEY
+          sync: false
