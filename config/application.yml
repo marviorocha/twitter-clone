@@ -1,0 +1,3 @@
+PGHOST: 'localhost'
+PGPASSWORD: 'admin123'
+PGUSERNAME: 'postgres'
