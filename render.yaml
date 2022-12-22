@@ -22,17 +22,17 @@ services:
     maxmemoryPolicy: noeviction
 
   - type: worker
-      name: sidekiq-worker
-      env: ruby
-      region: ohio
-      buildCommand: bundle install
-      startCommand: bundle exec sidekiq
-      plan: free
-      envVars:
-        - key: REDIS_URL
-          fromService:
-            type: redis
-            name: sidekiq-redis
-            property: connectionString
-        - key: RAILS_MASTER_KEY
-          sync: false
+    name: sidekiq-worker
+    env: ruby
+    region: ohio
+    buildCommand: bundle install
+    startCommand: bundle exec sidekiq
+    plan: free
+    envVars:
+     - key: REDIS_URL
+       fromService:
+         type: redis
+         name: sidekiq-redis
+         property: connectionString
+     - key: RAILS_MASTER_KEY
+       sync: false
