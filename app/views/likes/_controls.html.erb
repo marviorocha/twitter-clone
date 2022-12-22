@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+<li>
+<%= content_tag :div, class: "#{dom_id(tweet)}_likes" do %>
+    <%= render "likes/likes", likeable: tweet %>
+  <% end %>
+</li>
