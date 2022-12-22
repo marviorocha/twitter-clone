@@ -2,11 +2,10 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!
   def index
     @tweet = Tweet.new
-    @tweets = Tweet.all.order(created_at: :asc)
+    @tweets = Tweet.all.order(created_at: :desc)
   end
 
   def create
-    byebug
 
     @tweet = current_user.tweets.new(tweet_params)
     respond_to do |format|
@@ -19,7 +18,7 @@ class TweetsController < ApplicationController
         end
       end
     end
-
+  end
 
 
     def retweet
@@ -45,8 +44,9 @@ class TweetsController < ApplicationController
       @tweet.destroy
     end
 
+
     def tweet_params
-      params.require(:tweet).permit(:body)
+      params.require(:tweet).permit(:body, :tweet_id)
     end
-  end
+
 end

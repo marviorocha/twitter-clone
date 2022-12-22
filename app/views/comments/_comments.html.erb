@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 <div class="py-4 border-b" id="<%= dom_id(comment) %>">
   <div class="flex space-x-3 items-start">
     <div class="flex-shrink-0">
@@ -16,6 +15,7 @@
             <%= render "likes/likes", likeable: comment %>
           <% end %>
         </li>
+
         <% if user_signed_in? && current_user == comment.user  %>
           <li>
             <%= button_to tweet_comment_path(comment.tweet,comment), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "text-gray-500 space-x-2 group flex items-center justify-center" do %>
