@@ -10,4 +10,6 @@ has_person_name
 
 has_many :tweets
 
+validates_uniqueness_of :username
+
 end
